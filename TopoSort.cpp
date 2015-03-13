@@ -14,7 +14,7 @@
 
 using namespace std;
 
-bool TopoSort (const vector<vector<int> > &, vector<int> &, vector<int> &);
+bool TopoSort (const vector<vector<int> > &, int, vector<int> &, vector<int> &);
 bool CheckEdges(const vector<int> &);
 
 int main(int argc, const char * argv[]) {
@@ -28,16 +28,17 @@ int main(int argc, const char * argv[]) {
     
     vector<int> aux;                             // auxilary vector used for filling 2D vector
     
-    vector<int> Indegree;                        // has in-degrees of vertices; 0 means that the vertix
+    vector<int> Edge;                        // has in-degrees of vertices; 0 means that the vertix
     // has no incoming nodes
     
     vector<int> SortedList;                      // used to store the sorted elements; primarily empty
     
-    //vector<int> ZeroIndegree;                    // used to save those vertices that have no incoming edges
+    //vector<int> ZeroEdge;                    // used to save those vertices that have no incoming edges
     
     //int SortedList[1000];                          // sorted list
     
     char c;                                         // char obtained from file
+    int counter = 0;                                    // counter for number of nodes
     
     /* Parse file that contains the adjacency matrix */
     in.open(argv[1]);
@@ -60,6 +61,11 @@ int main(int argc, const char * argv[]) {
             if (c ==  '\n')
             {
                 AdjMatrix.push_back(aux);
+                
+                // get count of nodes
+                counter  = AdjMatrix.size();
+                
+                // clear vector for next iteration
                 aux.clear();
             }
             
@@ -75,18 +81,19 @@ int main(int argc, const char * argv[]) {
             
             in.get(c);
         }
+        
     }
     
     /* Apply Topological Sorting on the adjacency list 'AdjMatrix' and get the sorted list of nodes in 'SortList' */
-    TopoSort (AdjMatrix, Indegree, SortList);
+    TopoSort (AdjMatrix, counter, Edge, SortList);
     
     /* Fill Indgree Vector */
     // get the number of connections/edges for each node in the graph
     // those connections are called in-degree (no. of edges coming into each node)
     for (int i = 0; i < AdjMatrix.size(); i++)
     {
-        // initially set the indegree to 0
-        Indegree[i] = 0;
+        // initially set the Edge to 0
+        Edge[i] = 0;
         
         // then check its connections with the other nodes
         for (int j = 0; j < AdjMatrix.size(); i++)
@@ -94,12 +101,12 @@ int main(int argc, const char * argv[]) {
             // if the node has connections with nodes other than itself
             if (AdjMatrix[i][j] != 0 && i != j)
                 // update in-degree counter for that node index
-                Indegree[i] ++;
+                Edge[i] ++;
         }
     }
     
     /* Apply Topological Sort and check success of process */
-    if (TopoSort(AdjMatrix,Indegree))
+    if (TopoSort(AdjMatrix,Edge))
         cout << "Topological Sorting done sucessfully." << endl;
     else
         cout << "Topological Sorting failed." << endl;
@@ -108,44 +115,43 @@ int main(int argc, const char * argv[]) {
 }
 
 bool TopoSort (const vector<vector<int> > & AdjMatrix,
-               vector<int> & Indegree,
+               int counter,
+               vector<int> & Edge,
                vector<int> & SortList
                )
 {
     // this function performs Topological Sorting according to Kahn's Algorithm
     
-    queue <int> ZeroIndegree;               // list of indeces of nodes that have no incoming edges
+    queue <int> ZeroEdge;               // list of indeces of nodes that have no incoming edges
     
-    int node;
+    int node;                               // index of node in graph
     
-    list<int>::iterator iterator;
-    
-    // get the nodes with zero in-degree (i.e. those with no incoming edges)
-    for (int i = 0; i < Indegree.size(); i++)
+    // get the nodes with with no incoming edges
+    for (int i = 0; i < Edge.size(); i++)
     {
-        if (Indegree[i]==0)
-            ZeroIndegree.push(i);
+        if (Edge[i]==0)
+            ZeroEdge.push(i);
     }
     
-    while (!ZeroIndegree.empty()) {
+    while (!ZeroEdge.empty()) {
         
         // remove a node from the queue of nodes that have no incoming edges
-        node = ZeroIndegree.front();
-        ZeroIndegree.pop();
+        node = ZeroEdge.front();
+        ZeroEdge.pop();
         
         // append it to the list of sorted nodes
         SortedList.push_back(node);
         
         // for each node 'x' connected to 'node' through edge 'e'
-        for (iterator = AdjMatrix[node].begin(); iterator!= AdjMatrix[node].end(); iterator++)
+        for (int i = 0; i < counter ; i++)
         {
             // remove the edge e from graph by decrementing the in-degree
-            Indegree[*iterator] = Indegree[*iterator] -1;
+            Edge[node] = Edge[node] -1;
             
-            // if x has no incoming edges (i.e. has indegree = 0 )
-            if (Indegree[*iterator] == 0)
-                // append x to the queue of ZeroIndegree so that it gets processed
-                ZeroIndegree.push(*iterator);
+            // if x has no incoming edges (i.e. has Edge = 0 )
+            if (Edge[i] == 0)
+                // append x to the queue of ZeroEdge so that it gets processed
+                ZeroEdge.push(i);
         }
     }
     
@@ -154,21 +160,21 @@ bool TopoSort (const vector<vector<int> > & AdjMatrix,
     
     // check if there are any other edges
     // if there are edges it means that it was cyclic
-    if (CheckEdges(Indegree))
+    if (CheckEdges(Edge))
         return 1;
     else
         return 0;
 }
 
-bool CheckEdges(const vector<int> & Indegree)
+bool CheckEdges(const vector<int> & Edge)
 {
-    // traverse the Indegree to check that no edges exist
-    for (int i = 0; i < Indegree.size(); i++)
+    // traverse the Edge to check that no edges exist
+    for (int i = 0; i < Edge.size(); i++)
     {
-        // an edge means that the indegree > 0 (therefore, indegree == 0, it means that there are no edges)
-        // if indegree == -1, it means that the node is not in the graph
+        // an edge means that the Edge > 0 (therefore, Edge == 0, it means that there are no edges)
+        // if Edge == -1, it means that the node is not in the graph
         
-        if (Indegree[i] > 0 && Indegree[i] != -1)
+        if (Edge[i] > 0 && Edge[i] != -1)
             return 0;
         // returning false means that there is an error, either that there is an node not in the graph
         // or that the graph still has edges
