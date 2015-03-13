@@ -14,8 +14,7 @@
 
 using namespace std;
 
-//bool TopoSort (vector<list<int> > &, vector<int> &);
-bool TopoSort (vector<vector<int> > &, vector<int> &);
+bool TopoSort (const vector<vector<int> > &, vector<int> &, vector<int> &);
 bool CheckEdges(const vector<int> &);
 
 int main(int argc, const char * argv[]) {
@@ -25,8 +24,7 @@ int main(int argc, const char * argv[]) {
     ofstream out;
     
     //int AdjMatrix[1000][1000];                   //adjacency matrix
-    //vector<list<int> > AdjList;                 // adjacency list/matrix
-    vector<vector<int> > AdjList;                // adjacency list/matrix
+    vector<vector<int> > AdjMatrix;                // adjacency list/matrix
     
     vector<int> aux;                             // auxilary vector used for filling 2D vector
     
@@ -35,7 +33,7 @@ int main(int argc, const char * argv[]) {
     
     vector<int> SortedList;                      // used to store the sorted elements; primarily empty
     
-    vector<int> ZeroIndegree;                    // used to save those vertices that have no incoming edges
+    //vector<int> ZeroIndegree;                    // used to save those vertices that have no incoming edges
     
     //int SortedList[1000];                          // sorted list
     
@@ -61,7 +59,7 @@ int main(int argc, const char * argv[]) {
             // push data to the vector then clear auxilary vector
             if (c ==  '\n')
             {
-                AdjList.push_back(aux);
+                AdjMatrix.push_back(aux);
                 aux.clear();
             }
             
@@ -71,7 +69,7 @@ int main(int argc, const char * argv[]) {
                 // convet this data (char) to int (i.e. converting character 0 to int 0)
                 int k = int (c) - 48;
                 
-                // then push this data to the auxilary vector which will then be pushed to the AdjList
+                // then push this data to the auxilary vector which will then be pushed to the AdjMatrix
                 aux.push_back(k);
             }
             
@@ -79,26 +77,29 @@ int main(int argc, const char * argv[]) {
         }
     }
     
+    /* Apply Topological Sorting on the adjacency list 'AdjMatrix' and get the sorted list of nodes in 'SortList' */
+    TopoSort (AdjMatrix, Indegree, SortList);
+    
     /* Fill Indgree Vector */
     // get the number of connections/edges for each node in the graph
     // those connections are called in-degree (no. of edges coming into each node)
-    for (int i = 0; i < AdjList.size(); i++)
+    for (int i = 0; i < AdjMatrix.size(); i++)
     {
         // initially set the indegree to 0
         Indegree[i] = 0;
         
         // then check its connections with the other nodes
-        for (int j = 0; j < AdjList.size(); i++)
+        for (int j = 0; j < AdjMatrix.size(); i++)
         {
             // if the node has connections with nodes other than itself
-            if (AdjList[i][j] != 0 && i != j)
+            if (AdjMatrix[i][j] != 0 && i != j)
                 // update in-degree counter for that node index
                 Indegree[i] ++;
         }
     }
     
     /* Apply Topological Sort and check success of process */
-    if (TopoSort(AdjList,Indegree))
+    if (TopoSort(AdjMatrix,Indegree))
         cout << "Topological Sorting done sucessfully." << endl;
     else
         cout << "Topological Sorting failed." << endl;
@@ -106,14 +107,14 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-bool TopoSort (vector<list<int> > & AdjList,
-               vector<int> & Indegree
+bool TopoSort (const vector<vector<int> > & AdjMatrix,
+               vector<int> & Indegree,
+               vector<int> & SortList
                )
 {
     // this function performs Topological Sorting according to Kahn's Algorithm
     
-    queue <int> ZeroIndegree;                       //tsort_queue // s
-    vector<int> SortedList;                         // sorted // l
+    queue <int> ZeroIndegree;               // list of indeces of nodes that have no incoming edges
     
     int node;
     
@@ -136,7 +137,7 @@ bool TopoSort (vector<list<int> > & AdjList,
         SortedList.push_back(node);
         
         // for each node 'x' connected to 'node' through edge 'e'
-        for (iterator = AdjList[node].begin(); iterator!= AdjList[node].end(); iterator++)
+        for (iterator = AdjMatrix[node].begin(); iterator!= AdjMatrix[node].end(); iterator++)
         {
             // remove the edge e from graph by decrementing the in-degree
             Indegree[*iterator] = Indegree[*iterator] -1;
@@ -148,6 +149,11 @@ bool TopoSort (vector<list<int> > & AdjList,
         }
     }
     
+    // At this point, if the adjacency list read from the file was DAG, it means that 'SortList' will have the
+    // topoligically sort of nodes
+    
+    // check if there are any other edges
+    // if there are edges it means that it was cyclic
     if (CheckEdges(Indegree))
         return 1;
     else
