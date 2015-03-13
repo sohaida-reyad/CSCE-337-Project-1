@@ -34,10 +34,9 @@ Milestone 2: Thursday, March 12, 2015
 
 * Topological Sorting Algorithm implemented (please refer to TopoSort.cpp): 
 The code recieves the file that has the adjacency matrix and saves it in a 2D container (more specifically, a vector of vectors) with the name 'AdjMatrix'. Then, the number of edges in per node is counted and saved in a vector 'Edge', which specifies the number of connections internally within the graph. 
-The AdjMatrix and the Edge vectors are passed to a 'TopoSort' function, which implements the Kahn algorithm for topological sorting as outlined on the provided link. After sorting is done, a check is done to ensure that no edges exist; if there are edges in the graph after the sorting, it means that the graph either had a node that was not in the graph or that the graph was cyclic. The result of this check is then reported to the main in the vector with the name 'SortedList'. 
+The AdjMatrix and the Edge vectors are passed to a 'TopoSort' function, which implements the Kahn algorithm for topological sorting as outlined in the provided Wikipedia link (mentioned and the end of the paragraph). After sorting is done, a check is done to ensure that no edges exist; if there are edges in the graph after the sorting, it means that the graph either had a node that was not in the graph or that the graph was cyclic. The result of this check is then reported to the main in the vector with the name 'SortedList'. 
 The implementation of the Topological Algorithm in the project was based on Kahn's algorithm. The implemented code was based on the pseuodcode in the following link:
 http://en.wikipedia.org/wiki/Topological_sorting
-
 
 As for parsing the gate level netlist using perl:
 1 - We started with installing perl. 

@@ -14,8 +14,10 @@
 
 using namespace std;
 
-bool TopoSort (const vector<vector<int> > &, int, vector<int> &, vector<int> &);
+bool TopoSort ( vector<vector<int> > &, int, vector<int> &, vector<int> &);
 bool CheckEdges(const vector<int> &);
+void getEdges (const vector<vector<int> >, int, const vector<int> & );
+
 
 int main(int argc, const char * argv[]) {
     
@@ -84,29 +86,11 @@ int main(int argc, const char * argv[]) {
         
     }
     
-    /* Apply Topological Sorting on the adjacency list 'AdjMatrix' and get the sorted list of nodes in 'SortList' */
-    TopoSort (AdjMatrix, counter, Edge, SortList);
-    
-    /* Fill Indgree Vector */
-    // get the number of connections/edges for each node in the graph
-    // those connections are called in-degree (no. of edges coming into each node)
-    for (int i = 0; i < AdjMatrix.size(); i++)
-    {
-        // initially set the Edge to 0
-        Edge[i] = 0;
-        
-        // then check its connections with the other nodes
-        for (int j = 0; j < AdjMatrix.size(); i++)
-        {
-            // if the node has connections with nodes other than itself
-            if (AdjMatrix[i][j] != 0 && i != j)
-                // update in-degree counter for that node index
-                Edge[i] ++;
-        }
-    }
+    /* Fill Edges Vector */
+    getEdges(AdjMatrix, counter, Edge);
     
     /* Apply Topological Sort and check success of process */
-    if (TopoSort(AdjMatrix,Edge))
+    if (TopoSort(AdjMatrix, counter, Edge, SortedList))
         cout << "Topological Sorting done sucessfully." << endl;
     else
         cout << "Topological Sorting failed." << endl;
@@ -114,10 +98,10 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-bool TopoSort (const vector<vector<int> > & AdjMatrix,
+bool TopoSort ( vector<vector<int> > & AdjMatrix,
                int counter,
                vector<int> & Edge,
-               vector<int> & SortList
+               vector<int> & SortedList
                )
 {
     // this function performs Topological Sorting according to Kahn's Algorithm
@@ -142,20 +126,24 @@ bool TopoSort (const vector<vector<int> > & AdjMatrix,
         // append it to the list of sorted nodes
         SortedList.push_back(node);
         
-        // for each node 'x' connected to 'node' through edge 'e'
-        for (int i = 0; i < counter ; i++)
+        // for each node 'i' connected to 'node' through edge 'e' (i.e. AdjMatrix[i][node] == 1 )
+        for (int i = 0; i < counter; i++)
         {
-            // remove the edge e from graph by decrementing the in-degree
-            Edge[node] = Edge[node] -1;
+             if (i!= node && AdjMatrix[i][node] != 0) {
+                 // remove the edge e from graph by decrementing the in-degree
+                 AdjMatrix[i][node] = AdjMatrix[i][node] -1;
             
-            // if x has no incoming edges (i.e. has Edge = 0 )
+            // update Edge vector after the graph has been updated
+            getEdges(AdjMatrix, counter, Edge);
+                 
+            // if i now has no incoming edges (i.e. has Edge = 0 )
             if (Edge[i] == 0)
-                // append x to the queue of ZeroEdge so that it gets processed
+                // append i to the queue of ZeroEdge so that it gets processed
                 ZeroEdge.push(i);
         }
     }
     
-    // At this point, if the adjacency list read from the file was DAG, it means that 'SortList' will have the
+    // At this point, if the adjacency list read from the file was DAG, it means that 'SortedList' will have the
     // topoligically sort of nodes
     
     // check if there are any other edges
@@ -165,7 +153,29 @@ bool TopoSort (const vector<vector<int> > & AdjMatrix,
     else
         return 0;
 }
-
+    
+void getEdges (const vector<vector<int> > & AdjMatrix,
+               int counter,
+               const vector<int> & Edge)
+{
+    // get the number of connections/edges for each node in the graph
+    // those connections are called in-degree (no. of edges coming into each node)
+    for (int i = 0; i < counter; i++)
+    {
+        // initially set the Edge to 0
+        Edge[i] = 0;
+        
+        // then check its connections with the other nodes
+        for (int j = 0; j < counter; i++)
+        {
+            // if the node has connections with nodes other than itself
+            if (AdjMatrix[i][j] != 0 && i != j)
+                // update in-degree counter for that node index
+                Edge[i] ++;
+        }
+    }
+}
+    
 bool CheckEdges(const vector<int> & Edge)
 {
     // traverse the Edge to check that no edges exist
