@@ -31,6 +31,27 @@ Logic Circuit Schematic Beautifier
 ===========================================================
 
 Milestone 2: Thursday, March 12, 2015 
+
 * Topological Sorting Algorithm implemented (please refer to TopoSort.cpp): 
 The code recieves the file that has the adjacency matrix and saves it in a 2D container (more specifically, a vector of vectors) with the name 'AdjList'. Then, the number of edges in per node is counted and saved in a vector 'Indegree', which specifies the number of connections internally within the graph. 
 The AdjList and the Indegree vectors are passed to a 'TopoSort' function, which implements the Kahn algorithm for topological sorting as outlined on the provided link. After sorting is done, a check is done to ensure that no edges exist; if there are edges in the graph after the sorting, it means that the graph either had a node that was not in the graph or that the graph was cyclic. The result of this check is then reported to the main. 
+
+As for parsing the gate level netlist using perl:
+1 - We started with installing perl. 
+We followed this tutorial 
+http://www.tutorialspoint.com/perl/perl_environment.htm
+for installing perl, IDE for perl and learning and playing with the basics of perl
+
+2- We wanted to install the perl verilog library, we found it easier to install it on linux. 
+We installed the library with the help of this link.
+http://www.veripool.org/projects/verilog-perl/wiki/Installing
+
+3- We then began to read the different classes of the perl verilog, found that probably we will use Verilog::Netlist, Verilog::Netlist::Cell, Verilog::Netlist::Module, Verilog::Netlist::Cell
+
+4- We created a simple perl file "test1.pl" to parse the "booth.g.v" file ( one of the test files). The code was based on the example from this tutorial:
+http://search.cpan.org/dist/Verilog-Perl/Netlist.pm
+
+However it has compilation errors, after spending some time in trying to figure out what is wrong, we figured out that it does not read the file correctly so as to be able to identify the modules correctly. 
+
+We have a question:
+- Each file will have only one module, right ?
