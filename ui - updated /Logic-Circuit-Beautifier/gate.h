@@ -9,19 +9,19 @@
 #ifndef gate_h
 #define gate_h
 
-#include <string>
-#include <vector>
+#include <QString>
+#include <QVector>
 
 using namespace std;
 
 class gate
 {
 public:
-    string name;
-    int num_inputs;
-    vector <string> inputs;
-    string output;
-    int level;
+    QString name;
+    qint64 num_inputs;
+    QVector <QString> inputs;
+    QString output;
+    qint64 level;
 };
 
 #endif

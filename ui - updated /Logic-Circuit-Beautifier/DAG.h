@@ -9,10 +9,11 @@
 #ifndef DAG_h
 #define DAG_h
 
-#include <string>
+#include <QString>
 #include <fstream>
-#include <vector>
-#include <utility>
+#include <QVector>
+//#include <utility>
+#include <QPair>
 
 #include "gate.h"
 
@@ -22,47 +23,35 @@ class DAG
 {
 public:
     
-    /*
-    class gate
-    {
-    public:
-        string name;
-        int num_inputs;
-        vector <string> inputs;
-        string output;
-        int level; 
-    };
-    */
-    
     DAG();
     ~DAG();
     
-    bool openFile (const string &);
+    bool openFile (const QString &);
     void readFile();
-    unsigned int getGatesCounter();
-    int find(vector<string>*, const string &);
+    qint64 getGatesCounter();
+    qint64 find(QVector<QString>*, const QString &);
     
-    vector <gate> gates;
-    vector <string> outputs;
-    vector <string> inputs;
-    vector <string> wires;
+    QVector <gate> gates;
+    QVector <QString> outputs;
+    QVector <QString> inputs;
+    QVector <QString> wires;
     
-    vector<string> In;
-    vector<string> Out;
-    vector<string> InOut;
-    vector<string> Wires;
-    vector<pair<string, string> > Assign;
+    QVector<QString> In;
+    QVector<QString> Out;
+    QVector<QString> InOut;
+    QVector<QString> Wires;
+    QVector<QPair<QString, QString> > Assign;
 
-    vector<vector<int> > adjMatrix;
+    QVector<QVector<qint64> > adjMatrix;
     
 private:
     
     ifstream in;
-    int inCount;
-    int outCount;
-    int inoutCount;
-    int wiresCount;
-    int assignCount;
+    qint64 inCount;
+    qint64 outCount;
+    qint64 inoutCount;
+    qint64 wiresCount;
+    qint64 assignCount;
 };
 
 #endif
