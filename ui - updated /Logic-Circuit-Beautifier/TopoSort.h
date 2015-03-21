@@ -28,12 +28,15 @@ public:
     void KahnSort();
     
     QVector <QString> sortedGates;
+    QQueue <qint64> noEdgesIndex;
+
+    void sortGates (DAG*);
     
 private:
     
     QVector< QVector < qint64> > AdjMatrix;
     QQueue <gate> noIncomingEdges;
-    QQueue <qint64> noEdgesIndex;
+    //QQueue <qint64> noEdgesIndex;
     QVector<qint64> connectedGates;
     
     DAG* dagPtr;
@@ -42,7 +45,8 @@ private:
     
     bool hasIncomingEdges(const qint64&);
     void getConnectedGates(const qint64&);
-    
+    qint16 find(QString&, QVector<gate>&);
+
     
 };
 

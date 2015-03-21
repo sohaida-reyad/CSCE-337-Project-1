@@ -34,15 +34,7 @@ TopoSort::TopoSort(DAG* dag)
             dagPtr->gates[i].level = 1;
         }
     }
-    /*
-    cout << "const" << endl;
-    
-    for (qint64i = 0 ; i <v.size(); i++)
-    {
-        cout << v[i].name << endl;
-    }
-    
- */
+
 }
 
 TopoSort::~TopoSort()
@@ -110,4 +102,32 @@ void TopoSort::getConnectedGates(const qint64& j)
         if (dagPtr->adjMatrix[i][j] == 1)
             connectedGates.push_back(i); 
     }
+}
+
+void TopoSort:: sortGates (DAG* dag)
+{
+    //DAG* dPtr = dag;
+    gate g;
+
+    for (qint16 i = 0; i< gatesCount; i++)
+    {
+        // find sorted gate [i] in DAG gates
+        qint16 index = find(sortedGates[i], dagPtr->gates);
+
+        if (index!=-1)
+        {
+            g = dagPtr->gates[index];
+            dag->gates.push_back(g);
+        }
+    }
+
+}
+
+qint16 TopoSort:: find(QString& g, QVector <gate> & gates)
+{
+    for ( qint16 i = 0; i < gates.size(); i++)
+        if (gates[i].name == g)
+            return i;
+
+    return -1;
 }

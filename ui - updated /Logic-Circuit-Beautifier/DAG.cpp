@@ -10,6 +10,7 @@
 #include <QString>
 //#include <iostream>
 //#include <stdlib.h>
+#include <QFile>
 
 #include "DAG.h"
 #include "gate.h"
@@ -24,25 +25,44 @@ DAG ::~DAG()
 {
 }
 
+/*
 bool DAG ::openFile(const QString& fileName)
 {
-    in.open(fileName.c_str());
+    file(fileName);
+
+    if(file.open(QFile::ReadOnly))
+    //in.open(fileName);
     
-    if (in.fail())
+    //if (in.fail())
         return 0;
     else
         return 1;
 }
+*/
 
-void DAG ::readFile()
+bool DAG ::readFile(const QString& fileName)
 {
+
+
+
     gate * g = new gate;
     QString s, s1, numInputs, gateName, gateNumber;
     
+    QFile file(fileName);
+
+    if(!file.open(QFile::ReadOnly))
+    //in.open(fileName);
+
+    //if (in.fail())
+        return 0;
+    else
+        //return 1;
+    {
+         QTextStream in(&file);
     // inputs
     in >> s ;
-    inCount = atoi(s.c_str());
-    for (qint6464 i = 0; i < inCount; i++)
+    inCount = s.toInt();
+    for (qint16 i = 0; i < inCount; i++)
     {
         in >> s >> s1;
         In.push_back(s+s1);
@@ -50,8 +70,8 @@ void DAG ::readFile()
     
     // outputs
     in >> s ;
-    outCount = atoi(s.c_str());
-    for (qint64 i = 0; i < outCount; i++)
+    outCount = s.toInt();
+    for (qint16 i = 0; i < outCount; i++)
     {
         in >> s >> s1;
         Out.push_back(s+s1);
@@ -59,8 +79,8 @@ void DAG ::readFile()
     
     // inout
     in >> s ;
-    inoutCount = atoi(s.c_str());
-    for (qint64 i = 0; i < inoutCount; i++)
+    inoutCount = s.toInt();
+    for (qint16 i = 0; i < inoutCount; i++)
     {
         in >> s >> s1;
         InOut.push_back(s+s1);
@@ -68,8 +88,8 @@ void DAG ::readFile()
     
     // wires
     in >> s ;
-    wiresCount = atoi(s.c_str());
-    for (qint64 i = 0; i < wiresCount; i++)
+    wiresCount = s.toInt();
+    for (qint16 i = 0; i < wiresCount; i++)
     {
         in >> s;
         Wires.push_back(s);
@@ -77,8 +97,8 @@ void DAG ::readFile()
     
     // assign
     in >> s ;
-    assignCount = atoi(s.c_str());
-    for (qint64 i = 0; i < assignCount; i++)
+    assignCount = s.toInt();
+    for (qint16 i = 0; i < assignCount; i++)
     {
         in >> s >> s1;
         QPair<QString, QString> p (s, s1);
@@ -87,15 +107,15 @@ void DAG ::readFile()
     
     // gates
     in >> gateName;
-    while (!in.eof()) {
+    while (!in.atEnd()) {
         
         in >> gateNumber;
         g->name = gateName + gateNumber;
         
         in >> numInputs;
-        g->num_inputs = atoi(numInputs.c_str());
+        g->num_inputs = numInputs.toInt();
       
-        for (qint64 i = 0 ; i < g->num_inputs; i++)
+        for (qint16 i = 0 ; i < g->num_inputs; i++)
         {
             in >> s;
             g->inputs.push_back(s);
@@ -117,7 +137,9 @@ void DAG ::readFile()
     
     delete g;
     
-    in.close(); 
+    file.close();
+    return 1;
+    }
 }
 
 qint64 DAG :: getGatesCounter()
@@ -127,7 +149,7 @@ qint64 DAG :: getGatesCounter()
 
 qint64 DAG :: find(QVector<QString>* vec, const QString & st)
 {
-    for (qint64 i=0; i< vec->size(); i++)
+    for (qint16 i=0; i< vec->size(); i++)
         if ( vec->at(i)== st)
             return i;
     

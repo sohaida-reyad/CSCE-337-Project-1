@@ -14,6 +14,8 @@
 #include <QVector>
 //#include <utility>
 #include <QPair>
+#include <QTextStream>
+#include <QFile>
 
 #include "gate.h"
 
@@ -26,8 +28,8 @@ public:
     DAG();
     ~DAG();
     
-    bool openFile (const QString &);
-    void readFile();
+    //bool openFile ();
+    bool readFile(const QString &);
     qint64 getGatesCounter();
     qint64 find(QVector<QString>*, const QString &);
     
@@ -45,8 +47,9 @@ public:
     QVector<QVector<qint64> > adjMatrix;
     
 private:
-    
-    ifstream in;
+
+    //QFile file;
+
     qint64 inCount;
     qint64 outCount;
     qint64 inoutCount;

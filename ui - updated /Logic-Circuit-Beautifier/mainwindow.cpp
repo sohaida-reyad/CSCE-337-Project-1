@@ -64,9 +64,9 @@ void MainWindow::on_pushButton_clicked()
     unsigned int numberGates;
 
     //if (netlist->openFile(argv[1]))
-    if (netlist.openFile(fileName))
+    if (netlist.readFile(VerilogFileName))
     {
-        netlist.readFile();
+        //netlist.readFile();
         numberGates = netlist.getGatesCounter();
 
         netlist.adjMatrix.resize(numberGates);
@@ -112,16 +112,22 @@ void MainWindow::on_pushButton_clicked()
         TopoSort top(&netlist);
         top.KahnSort();
 
-        /*
-        cout << "main" << endl;
+        DAG sortedDAG;
 
-        for (int i = 0 ; i < top.sortedGates.size(); i++)
+
+        top.sortGates(&sortedDAG);
+
+        QString message = "";
+
+        for (qint16 i =0; i < netlist.getGatesCounter(); i++)
         {
-            cout << top.sortedGates[i]  << endl;
+            message  += sortedDAG.gates[i].name + "\t" + QString::number(sortedDAG.gates[i].level) + "\n" ;
         }
-        */
+
+        ui->textBrowser_2->setText(message);
 
     }
 
 
 }
+
