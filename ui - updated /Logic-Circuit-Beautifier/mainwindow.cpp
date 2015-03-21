@@ -41,20 +41,10 @@ void MainWindow::on_pushButton_clicked()
     QString fileName = filePath.fileName();
 
     // RUN
-    /*
-    //system ("perl netlist.pl");
-    system ("cd /Users/mac/Library/Developer/Xcode/DerivedData/CSCE337Project1-groosmpjonvudfaudxeyovpzjfoy/Build/Products/Debug/CSCE337Project1");
-    system ("./" + fileName);
-    */
 
     QString program = "/Users/mac/Library/Developer/Xcode/DerivedData/CSCE337Project1-groosmpjonvudfaudxeyovpzjfoy/Build/Products/Debug/CSCE337Project1";
-    //QStringList arguments = fileName;
-    //QProcess myProcess; // = new QProcess(this);
-    //myProcess.start(program + " " + fileName);
-    // myProcess.start("./CSCE337Project1 "+ fileName);
 
     QProcess process;
     process.startDetached(program, QStringList() << fileName);
 
-    //process.start("./CSCE337Project1 "+ fileName);
 }

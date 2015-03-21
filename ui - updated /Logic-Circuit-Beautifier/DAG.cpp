@@ -37,8 +37,55 @@ bool DAG ::openFile(const string& fileName)
 void DAG ::readFile()
 {
     gate * g = new gate;
-    string numInputs, s, gateName, gateNumber;
+    string s, s1, numInputs, gateName, gateNumber;
     
+    // inputs
+    in >> s ;
+    inCount = atoi(s.c_str());
+    for (int i = 0; i < inCount; i++)
+    {
+        in >> s >> s1;
+        In.push_back(s+s1);
+    }
+    
+    // outputs
+    in >> s ;
+    outCount = atoi(s.c_str());
+    for (int i = 0; i < outCount; i++)
+    {
+        in >> s >> s1;
+        Out.push_back(s+s1);
+    }
+    
+    // inout
+    in >> s ;
+    inoutCount = atoi(s.c_str());
+    for (int i = 0; i < inoutCount; i++)
+    {
+        in >> s >> s1;
+        InOut.push_back(s+s1);
+    }
+    
+    // wires
+    in >> s ;
+    wiresCount = atoi(s.c_str());
+    for (int i = 0; i < wiresCount; i++)
+    {
+        in >> s;
+        Wires.push_back(s);
+    }
+    
+    // assign
+    in >> s ;
+    assignCount = atoi(s.c_str());
+    for (int i = 0; i < assignCount; i++)
+    {
+        in >> s >> s1;
+        pair<string, string> p (s, s1);
+        Assign.push_back(p);
+    }
+    
+    // gates
     in >> gateName;
     while (!in.eof()) {
         

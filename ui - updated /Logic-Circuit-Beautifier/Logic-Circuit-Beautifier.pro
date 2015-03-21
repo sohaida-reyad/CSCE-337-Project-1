@@ -14,9 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dag.cpp
+    DAG.cpp \
+    TopoSort.cpp
 
 HEADERS  += mainwindow.h \
-    dag.h
+    DAG.h \
+    gate.h \
+    TopoSort.h
 
 FORMS    += mainwindow.ui

@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <utility>
 
 #include "gate.h"
 
@@ -46,11 +47,22 @@ public:
     vector <string> inputs;
     vector <string> wires;
     
+    vector<string> In;
+    vector<string> Out;
+    vector<string> InOut;
+    vector<string> Wires;
+    vector<pair<string, string> > Assign;
+
     vector<vector<int> > adjMatrix;
     
 private:
     
     ifstream in;
+    int inCount;
+    int outCount;
+    int inoutCount;
+    int wiresCount;
+    int assignCount;
 };
 
 #endif
