@@ -9,9 +9,9 @@
 #ifndef TopoSort_H
 #define TopoSort_H
 
-#include <string>
-#include <vector>
-#include <queue>
+#include <QString>
+#include <QVector>
+#include <QQueue>
 
 #include "DAG.h"
 #include "gate.h"
@@ -27,21 +27,21 @@ public:
     
     void KahnSort();
     
-    vector <string> sortedGates;
+    QVector <QString> sortedGates;
     
 private:
     
-    vector <vector<int> > AdjMatrix;
-    queue  <gate> noIncomingEdges;
-    queue  <int> noEdgesIndex; 
-    vector <int> connectedGates;
+    QVector< QVector < qint64> > AdjMatrix;
+    QQueue <gate> noIncomingEdges;
+    QQueue <qint64> noEdgesIndex;
+    QVector<qint64> connectedGates;
     
     DAG* dagPtr;
-    int gatesCount;
-    int levelCount;
+    qint64 gatesCount;
+    qint64 levelCount;
     
-    bool hasIncomingEdges(const int &);
-    void getConnectedGates(const int &); 
+    bool hasIncomingEdges(const qint64&);
+    void getConnectedGates(const qint64&);
     
     
 };
