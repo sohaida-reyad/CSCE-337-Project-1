@@ -18,26 +18,26 @@ TopoSort::TopoSort(DAG* dag)
     dagPtr = dag;
     levelCount = 1;
     
-    vector <gate> v;
+    QVector <gate> v;
     
     // set level of all gates to 1 (0 is for inputs)
     
     // fill noincomingedges
     gatesCount = dagPtr->getGatesCounter();
     
-    for (int i = 0; i < gatesCount; i++)
+    for (qint64 i = 0; i < gatesCount; i++)
     {
         if (!hasIncomingEdges(i)){
-            noIncomingEdges.push(dagPtr->gates[i]);
+            noIncomingEdges.enqueue(dagPtr->gates[i]);
             v.push_back(dagPtr->gates[i]);
-            noEdgesIndex.push(i);
+            noEdgesIndex.enqueue(i);
             dagPtr->gates[i].level = 1;
         }
     }
     /*
     cout << "const" << endl;
     
-    for (int i = 0 ; i <v.size(); i++)
+    for (qint64i = 0 ; i <v.size(); i++)
     {
         cout << v[i].name << endl;
     }
@@ -53,7 +53,7 @@ void TopoSort::KahnSort()
 {
     // follow wiki
     gate g;
-    int j ;
+    qint64 j  ;
     
     //cout << "enter kahn sort" << endl;
     
@@ -62,8 +62,8 @@ void TopoSort::KahnSort()
         g = noIncomingEdges.front();
         j = noEdgesIndex.front();
         
-        noIncomingEdges.pop();
-        noEdgesIndex.pop();
+        noIncomingEdges.dequeue();
+        noEdgesIndex.dequeue();
         
         sortedGates.push_back(g.name);
         //dagPtr->gates[j].level = levelCount;
@@ -72,11 +72,11 @@ void TopoSort::KahnSort()
         
         getConnectedGates(j);
         
-        for (int i = 0; i < connectedGates.size(); i++) {
+        for (qint64 i = 0; i < connectedGates.size(); i++) {
             dagPtr->adjMatrix[connectedGates[i]][j] = 0;
             if (!hasIncomingEdges(connectedGates[i])){
-                noIncomingEdges.push(dagPtr->gates[connectedGates[i]]);
-                noEdgesIndex.push(connectedGates[i]);
+                noIncomingEdges.enqueue(dagPtr->gates[connectedGates[i]]);
+                noEdgesIndex.enqueue(connectedGates[i]);
                 
                 dagPtr->gates[connectedGates[i]].level = dagPtr->gates[j].level + 1;
                 
@@ -90,9 +90,9 @@ void TopoSort::KahnSort()
     
 }
 
-bool TopoSort::hasIncomingEdges(const int & i)
+bool TopoSort::hasIncomingEdges(const qint64& i)
 {
-    for (int j = 0; j < gatesCount; j++)
+    for (qint64 j = 0; j < gatesCount; j++)
     {
         if (dagPtr->adjMatrix[i][j] == 1) {
             return 1;
@@ -101,11 +101,11 @@ bool TopoSort::hasIncomingEdges(const int & i)
     return 0;
 }
 
-void TopoSort::getConnectedGates(const int & j)
+void TopoSort::getConnectedGates(const qint64& j)
 {
     connectedGates.clear();
     
-    for (int i = 0; i < gatesCount; i++)
+    for (qint64 i = 0; i < gatesCount; i++)
     {
         if (dagPtr->adjMatrix[i][j] == 1)
             connectedGates.push_back(i); 
