@@ -44,7 +44,6 @@ bool DAG ::readFile(const QString& fileName)
 {
 
 
-
     gate * g = new gate;
     QString s, s1, numInputs, gateName, gateNumber;
     

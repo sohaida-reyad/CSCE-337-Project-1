@@ -13,6 +13,8 @@
 #include "TopoSort.h"
 
 QString VerilogFileName;
+DAG netlist;
+DAG sortedDAG;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,6 +32,27 @@ void MainWindow::on_pushButton_2_clicked()
 {
     // BROWSE
 
+   // clear
+    netlist.adjMatrix.clear();
+    netlist.gates.clear();
+    netlist.In.clear();
+    netlist.InOut.clear();
+    netlist.inputs.clear();
+    netlist.Out.clear();
+    netlist.outputs.clear();
+    netlist.Wires.clear();
+    netlist.wires.clear();
+
+    sortedDAG.adjMatrix.clear();
+    sortedDAG.gates.clear();
+    sortedDAG.In.clear();
+    sortedDAG.InOut.clear();
+    sortedDAG.inputs.clear();
+    sortedDAG.Out.clear();
+    sortedDAG.outputs.clear();
+    sortedDAG.Wires.clear();
+    sortedDAG.wires.clear();
+
    VerilogFileName = QFileDialog :: getOpenFileName(
                 this,
                 tr("Choose File"),                              // Dialog Name
@@ -42,24 +65,11 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QFileInfo filePath(VerilogFileName);
-    QString fileName = filePath.fileName();
-
     // RUN
+    ui->listWidget->clear();
+    ui->textBrowser_3->clear();
 
-    /*
-    QString program = "/Users/mac/Library/Developer/Xcode/DerivedData/CSCE337Project1-groosmpjonvudfaudxeyovpzjfoy/Build/Products/Debug/CSCE337Project1";
-    QProcess process;
-    process.startDetached(program, QStringList() << fileName);
-    */
-
-    /**/
-
-    DAG netlist;
     gate * g, * g1;
-
-    //string file = "//Users//mac//Desktop//folder//parsed_booth.g.v.txt";
-    //string file = argv[1];
 
     unsigned int numberGates;
 
@@ -94,40 +104,63 @@ void MainWindow::on_pushButton_clicked()
             // check if gate output is input to other gates
         }
 
-        /*
-        cout << "file open" << endl;
-
-        cout << "number of gates: " << numberGates << endl;
-
-        for (int i = 0 ; i < numberGates; i++)
-        {
-            cout << netlist.gates[i].name << "  ";
-            for (int j = 0; j < numberGates; j++)
-                cout <<  netlist.adjMatrix[i][j];
-            cout << endl;
-        }
-        */
-
         /* TOPO SORT */
         TopoSort top(&netlist);
         top.KahnSort();
-
-        DAG sortedDAG;
-
-
         top.sortGates(&sortedDAG);
 
-        QString message = "";
-
-        for (qint16 i =0; i < netlist.getGatesCounter(); i++)
+        ui->listWidget->addItem( "Level 0 ");
+        for (qint16 i = 1; i <= sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
         {
-            message  += sortedDAG.gates[i].name + "\t" + QString::number(sortedDAG.gates[i].level) + "\n" ;
+            ui->listWidget->addItem("Level " + QString::number(i) );
         }
+        ui->listWidget->addItem("Level " + QString::number(sortedDAG.gates[netlist.getGatesCounter()-1].level + 1) );
 
+        QString message = "";
+        for (qint16 i = 1; i <= sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
+        {
+            message += netlist.Assign[i].first + ",\t " + netlist.Assign[i].second + "\n";
+        }
         ui->textBrowser_2->setText(message);
-
     }
 
+
+}
+
+
+void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    QString message = "";
+
+    qint16 index = ui->listWidget->currentRow();
+
+    if (index == 0)
+    {
+        message += "--Inputs-- \n";
+
+        for (qint16 i =0; i < netlist.In.size(); i++)
+        {
+            message += netlist.In[i] + "\n";
+        }
+    }
+    else
+        if (index == sortedDAG.gates[netlist.getGatesCounter()-1].level + 1)
+        {
+            message += "--Outputs-- \n";
+
+            for (qint16 i =0; i < netlist.Out.size(); i++)
+            {
+                message += netlist.Out[i] + "\n";
+            }
+        }
+        else
+            for (qint16 i =0; i < netlist.getGatesCounter(); i++)
+            {
+                if (sortedDAG.gates[i].level == index)
+                    message  += sortedDAG.gates[i].name + "\n" ;
+            }
+
+    ui->textBrowser_3->setText(message);
 
 }
 
