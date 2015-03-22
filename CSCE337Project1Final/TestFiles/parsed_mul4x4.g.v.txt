@@ -1,0 +1,910 @@
+2
+md	[3:0]
+mr	[3:0]
+1
+result	[7:0]
+0
+430
+\booth.md 
+\booth.mr 
+\booth.x 
+\booth.z 
+\pp.md 
+\pp.mr 
+\pp.r0 
+\pp.r1 
+\pp.r2 
+\pp.r3 
+\pp.x 
+\pp.z 
+\tree.fa11.c_in 
+\tree.fa11.c_out 
+\tree.fa11.sum 
+\tree.fa11.x 
+\tree.fa11.y 
+\tree.fa12.c_in 
+\tree.fa12.c_out 
+\tree.fa12.sum 
+\tree.fa12.x 
+\tree.fa12.y 
+\tree.fa13.c_in 
+\tree.fa13.c_out 
+\tree.fa13.sum 
+\tree.fa13.x 
+\tree.fa13.y 
+\tree.fa14.c_in 
+\tree.fa14.c_out 
+\tree.fa14.sum 
+\tree.fa14.x 
+\tree.fa14.y 
+\tree.fa15.c_in 
+\tree.fa15.c_out 
+\tree.fa15.sum 
+\tree.fa15.x 
+\tree.fa15.y 
+\tree.fa16.c_in 
+\tree.fa16.c_out 
+\tree.fa16.sum 
+\tree.fa16.x 
+\tree.fa16.y 
+\tree.fa17.c_in 
+\tree.fa17.c_out 
+\tree.fa17.sum 
+\tree.fa17.x 
+\tree.fa17.y 
+\tree.fa18.c_in 
+\tree.fa18.c_out 
+\tree.fa18.sum 
+\tree.fa18.x 
+\tree.fa18.y 
+\tree.fa2.c_in 
+\tree.fa2.c_out 
+\tree.fa2.sum 
+\tree.fa2.x 
+\tree.fa2.y 
+\tree.fa3.c_in 
+\tree.fa3.c_out 
+\tree.fa3.sum 
+\tree.fa3.x 
+\tree.fa3.y 
+\tree.fa4.c_in 
+\tree.fa4.c_out 
+\tree.fa4.sum 
+\tree.fa4.x 
+\tree.fa4.y 
+\tree.fa5.c_in 
+\tree.fa5.c_out 
+\tree.fa5.sum 
+\tree.fa5.x 
+\tree.fa5.y 
+\tree.fa7.c_in 
+\tree.fa7.c_out 
+\tree.fa7.sum 
+\tree.fa7.x 
+\tree.fa7.y 
+\tree.fa8.c_in 
+\tree.fa8.c_out 
+\tree.fa8.sum 
+\tree.fa8.x 
+\tree.fa8.y 
+\tree.fa9.c_in 
+\tree.fa9.c_out 
+\tree.fa9.sum 
+\tree.fa9.x 
+\tree.fa9.y 
+\tree.ha1.c_out 
+\tree.ha1.sum 
+\tree.ha1.x 
+\tree.ha1.y 
+\tree.ha10.c_out 
+\tree.ha10.sum 
+\tree.ha10.x 
+\tree.ha10.y 
+\tree.ha6.c_out 
+\tree.ha6.sum 
+\tree.ha6.x 
+\tree.ha6.y 
+\tree.o1 
+\tree.o10 
+\tree.o11 
+\tree.o2 
+\tree.o3 
+\tree.o4 
+\tree.o5 
+\tree.o6 
+\tree.o7 
+\tree.o8 
+\tree.o9 
+\tree.r0 
+\tree.r1 
+\tree.r2 
+\tree.r3 
+\tree.result 
+\tree.w1 
+\tree.w10 
+\tree.w11 
+\tree.w12 
+\tree.w13 
+\tree.w14 
+\tree.w15 
+\tree.w16 
+\tree.w17 
+\tree.w18 
+\tree.w2 
+\tree.w3 
+\tree.w4 
+\tree.w5 
+\tree.w6 
+\tree.w7 
+\tree.w8 
+\tree.w9 
+_000_
+_001_
+_002_
+_003_
+_004_
+_005_
+_006_
+_007_
+_008_
+_009_
+_010_
+_011_
+_012_
+_013_
+_014_
+_015_
+_016_
+_017_
+_018_
+_019_
+_020_
+_021_
+_022_
+_023_
+_024_
+_025_
+_026_
+_027_
+_028_
+_029_
+_030_
+_031_
+_032_
+_033_
+_034_
+_035_
+_036_
+_037_
+_038_
+_039_
+_040_
+_041_
+_042_
+_043_
+_044_
+_045_
+_046_
+_047_
+_048_
+_049_
+_050_
+_051_
+_052_
+_053_
+_054_
+_055_
+_056_
+_057_
+_058_
+_059_
+_060_
+_061_
+_062_
+_063_
+_064_
+_065_
+_066_
+_067_
+_068_
+_069_
+_070_
+_071_
+_072_
+_073_
+_074_
+_075_
+_076_
+_077_
+_078_
+_079_
+_080_
+_081_
+_082_
+_083_
+_084_
+_085_
+_086_
+_087_
+_088_
+_089_
+_090_
+_091_
+_092_
+_093_
+_094_
+_095_
+_096_
+_097_
+_098_
+_099_
+_100_
+_101_
+_102_
+_103_
+_104_
+_105_
+_106_
+_107_
+_108_
+_109_
+_110_
+_111_
+_112_
+_113_
+_114_
+_115_
+_116_
+_117_
+_118_
+_119_
+_120_
+_121_
+_122_
+_123_
+_124_
+_125_
+_126_
+_127_
+_128_
+_129_
+_130_
+_131_
+_132_
+_133_
+_134_
+_135_
+_136_
+_137_
+_138_
+_139_
+_140_
+_141_
+_142_
+_143_
+_144_
+_145_
+_146_
+_147_
+_148_
+_149_
+_150_
+_151_
+_152_
+_153_
+_154_
+_155_
+_156_
+_157_
+_158_
+_159_
+_160_
+_161_
+_162_
+_163_
+_164_
+_165_
+_166_
+_167_
+_168_
+_169_
+_170_
+_171_
+_172_
+_173_
+_174_
+_175_
+_176_
+_177_
+_178_
+_179_
+_180_
+_181_
+_182_
+_183_
+_184_
+_185_
+_186_
+_187_
+_188_
+_189_
+_190_
+_191_
+_192_
+_193_
+_194_
+_195_
+_196_
+_197_
+_198_
+_199_
+_200_
+_201_
+_202_
+_203_
+_204_
+_205_
+_206_
+_207_
+_208_
+_209_
+_210_
+_211_
+_212_
+_213_
+_214_
+_215_
+_216_
+_217_
+_218_
+_219_
+_220_
+_221_
+_222_
+_223_
+_224_
+_225_
+_226_
+_227_
+_228_
+_229_
+_230_
+_231_
+_232_
+_233_
+_234_
+_235_
+_236_
+_237_
+_238_
+_239_
+_240_
+_241_
+_242_
+_243_
+_244_
+_245_
+_246_
+_247_
+_248_
+_249_
+_250_
+_251_
+_252_
+_253_
+_254_
+_255_
+_256_
+_257_
+_258_
+_259_
+_260_
+_261_
+_262_
+_263_
+_264_
+_265_
+_266_
+_267_
+_268_
+_269_
+_270_
+_271_
+_272_
+_273_
+_274_
+_275_
+_276_
+_277_
+_278_
+_279_
+_280_
+_281_
+_282_
+_283_
+_284_
+_285_
+_286_
+_287_
+_288_
+_289_
+_290_
+r0
+r1
+r2
+r3
+x
+z
+107
+\booth.mr 	mr
+r1	\pp.r1 
+\tree.o6 	\tree.ha6.sum 
+\tree.w6 	\tree.ha6.c_out 
+\tree.ha6.x 	\tree.o2 
+\tree.ha6.y 	\tree.r0 [3]
+\tree.result [1]	\tree.ha10.sum 
+\tree.w10 	\tree.ha10.c_out 
+\tree.ha10.x 	\tree.r0 [1]
+\tree.ha10.y 	\tree.r1 [1]
+r2	\pp.r2 
+r3	\pp.r3 
+\pp.md 	md
+\pp.mr 	mr
+\tree.r0 	r0
+\tree.r1 	r1
+\tree.r2 	r2
+\tree.r3 	r3
+result	\tree.result 
+\booth.md 	md
+\tree.result [0]	\tree.r0 [0]
+\tree.result [3]	\tree.fa12.sum 
+\tree.w12 	\tree.fa12.c_out 
+\tree.fa12.c_in 	\tree.w11 
+\tree.fa12.x 	\tree.w1 
+\tree.fa12.y 	\tree.o6 
+\tree.result [2]	\tree.fa11.sum 
+\tree.w11 	\tree.fa11.c_out 
+\tree.fa11.c_in 	\tree.w10 
+\tree.fa11.x 	\tree.r0 [2]
+x	\booth.x 
+\tree.fa11.y 	\tree.o1 
+\tree.result [4]	\tree.fa13.sum 
+\tree.w13 	\tree.fa13.c_out 
+\tree.fa13.c_in 	\tree.w12 
+\tree.fa13.x 	\tree.w6 
+\tree.fa13.y 	\tree.o7 
+\tree.result [5]	\tree.fa14.sum 
+\tree.w14 	\tree.fa14.c_out 
+\tree.fa14.c_in 	\tree.w13 
+\tree.fa14.x 	\tree.w7 
+z	\booth.z 
+\tree.fa14.y 	\tree.o8 
+\tree.result [6]	\tree.fa15.sum 
+\tree.w15 	\tree.fa15.c_out 
+\tree.fa15.c_in 	\tree.w14 
+\tree.fa15.x 	\tree.w8 
+\tree.fa15.y 	\tree.o9 
+\tree.result [7]	\tree.fa16.sum 
+\tree.w18 	\tree.fa16.c_out 
+\tree.fa16.c_in 	\tree.w15 
+\tree.fa16.x 	\tree.w9 
+\booth.x [0]	\booth.md [0]
+\tree.fa16.y 	\tree.o11 
+\tree.o10 	\tree.fa17.sum 
+\tree.w16 	\tree.fa17.c_out 
+\tree.fa17.c_in 	\tree.r0 [7]
+\tree.fa17.x 	\tree.r1 [7]
+\tree.fa17.y 	\tree.r2 [7]
+\tree.o11 	\tree.fa18.sum 
+\tree.w17 	\tree.fa18.c_out 
+\tree.fa18.c_in 	\tree.w5 
+\tree.fa18.x 	\tree.o10 
+\booth.z [0]	\booth.md [0]
+\tree.fa18.y 	\tree.r3 [7]
+\tree.o3 	\tree.fa3.sum 
+\tree.w3 	\tree.fa3.c_out 
+\tree.fa3.c_in 	\tree.r1 [4]
+\tree.fa3.x 	\tree.r2 [4]
+\tree.fa3.y 	\tree.r3 [4]
+\tree.o2 	\tree.fa2.sum 
+\tree.w2 	\tree.fa2.c_out 
+\tree.fa2.c_in 	\tree.r2 [3]
+\tree.fa2.x 	\tree.r3 [3]
+\pp.x 	x
+\tree.fa2.y 	\tree.r1 [3]
+\tree.o4 	\tree.fa4.sum 
+\tree.w4 	\tree.fa4.c_out 
+\tree.fa4.c_in 	\tree.r1 [5]
+\tree.fa4.x 	\tree.r2 [5]
+\tree.fa4.y 	\tree.r3 [5]
+\tree.o5 	\tree.fa5.sum 
+\tree.w5 	\tree.fa5.c_out 
+\tree.fa5.c_in 	\tree.r1 [6]
+\tree.fa5.x 	\tree.r2 [6]
+\pp.z 	z
+\tree.fa5.y 	\tree.r3 [6]
+\tree.o7 	\tree.fa7.sum 
+\tree.w7 	\tree.fa7.c_out 
+\tree.fa7.c_in 	\tree.w2 
+\tree.fa7.x 	\tree.o3 
+\tree.fa7.y 	\tree.r0 [4]
+\tree.o8 	\tree.fa8.sum 
+\tree.w8 	\tree.fa8.c_out 
+\tree.fa8.c_in 	\tree.w3 
+\tree.fa8.x 	\tree.o4 
+r0	\pp.r0 
+\tree.fa8.y 	\tree.r0 [5]
+\tree.o9 	\tree.fa9.sum 
+\tree.w9 	\tree.fa9.c_out 
+\tree.fa9.c_in 	\tree.w4 
+\tree.fa9.x 	\tree.o5 
+\tree.fa9.y 	\tree.r0 [6]
+\tree.o1 	\tree.ha1.sum 
+\tree.w1 	\tree.ha1.c_out 
+\tree.ha1.x 	\tree.r1 [2]
+\tree.ha1.y 	\tree.r2 [2]
+INVX1	_291_	1	\booth.md [1]	_000_
+NOR2X1	_292_	2	\booth.md [0]	_000_	\booth.x [1]
+XOR2X1	_293_	2	\booth.md [0]	\booth.md [1]	\booth.z [1]
+AND2X2	_294_	2	_000_	\booth.md [2]	\booth.x [2]
+XOR2X1	_295_	2	\booth.md [1]	\booth.md [2]	\booth.z [2]
+INVX1	_296_	1	\booth.md [3]	_001_
+NOR2X1	_297_	2	\booth.md [2]	_001_	\booth.x [3]
+XOR2X1	_298_	2	\booth.md [2]	\booth.md [3]	\booth.z [3]
+NOR2X1	_299_	2	\pp.x [0]	\pp.z [0]	_117_
+INVX1	_300_	1	_117_	_118_
+INVX1	_301_	1	\pp.z [0]	_119_
+NAND2X1	_302_	2	\pp.r0 [0]	_119_	_120_
+NAND2X1	_303_	2	\pp.mr [0]	\pp.z [0]	_121_
+NAND2X1	_304_	2	_121_	_120_	_122_
+AND2X2	_305_	2	_122_	_118_	\pp.r0 [0]
+NAND2X1	_306_	2	\pp.x [0]	\pp.z [0]	_123_
+XNOR2X1	_307_	2	\pp.mr [0]	\pp.mr [1]	_124_
+NOR2X1	_308_	2	_123_	_124_	_125_
+NOR2X1	_309_	2	\pp.x [0]	_119_	_126_
+NAND2X1	_310_	2	\pp.mr [1]	_126_	_127_
+NAND2X1	_311_	2	\pp.r0 [1]	_119_	_128_
+NAND2X1	_312_	2	_128_	_127_	_129_
+NOR2X1	_313_	2	_125_	_129_	_130_
+NOR2X1	_314_	2	_117_	_130_	\pp.r0 [1]
+INVX1	_315_	1	_123_	_131_
+NOR2X1	_316_	2	\pp.mr [0]	\pp.mr [1]	_132_
+XNOR2X1	_317_	2	_132_	\pp.mr [2]	_133_
+NAND2X1	_318_	2	_131_	_133_	_134_
+NAND2X1	_319_	2	\pp.mr [2]	_126_	_135_
+NAND2X1	_320_	2	\pp.r0 [2]	_119_	_136_
+AND2X2	_321_	2	_135_	_136_	_137_
+NAND2X1	_322_	2	_137_	_134_	_002_
+AND2X2	_323_	2	_002_	_118_	\pp.r0 [2]
+INVX1	_324_	1	\pp.mr [3]	_003_
+INVX1	_325_	1	\pp.mr [2]	_004_
+NAND2X1	_326_	2	_004_	_132_	_005_
+XNOR2X1	_327_	2	_005_	_003_	_006_
+NAND2X1	_328_	2	_131_	_006_	_007_
+AND2X2	_329_	2	_126_	\pp.mr [3]	_008_
+AND2X2	_330_	2	_119_	\pp.r0 [3]	_009_
+NOR2X1	_331_	2	_009_	_008_	_010_
+NAND2X1	_332_	2	_010_	_007_	_011_
+AND2X2	_333_	2	_011_	_118_	\pp.r0 [3]
+AND2X2	_334_	2	_119_	\pp.r0 [4]	_012_
+NOR2X1	_335_	2	_012_	_008_	_013_
+NAND2X1	_336_	2	_013_	_007_	_014_
+AND2X2	_337_	2	_014_	_118_	\pp.r0 [4]
+AND2X2	_338_	2	_119_	\pp.r0 [5]	_015_
+NOR2X1	_339_	2	_015_	_008_	_016_
+NAND2X1	_340_	2	_016_	_007_	_017_
+AND2X2	_341_	2	_017_	_118_	\pp.r0 [5]
+AND2X2	_342_	2	_119_	\pp.r0 [6]	_018_
+NOR2X1	_343_	2	_018_	_008_	_019_
+NAND2X1	_344_	2	_019_	_007_	_020_
+AND2X2	_345_	2	_020_	_118_	\pp.r0 [6]
+AND2X2	_346_	2	_119_	\pp.r0 [7]	_021_
+NOR2X1	_347_	2	_021_	_008_	_022_
+NAND2X1	_348_	2	_022_	_007_	_023_
+AND2X2	_349_	2	_023_	_118_	\pp.r0 [7]
+INVX1	_350_	1	\pp.x [1]	_024_
+NOR2X1	_351_	2	\pp.z [1]	_024_	_025_
+AND2X2	_352_	2	_025_	\pp.r1 [0]	\pp.r1 [0]
+NAND2X1	_353_	2	\pp.r1 [1]	_025_	_026_
+NAND2X1	_354_	2	\pp.mr [0]	\pp.z [1]	_027_
+NAND2X1	_355_	2	_027_	_026_	\pp.r1 [1]
+NOR2X1	_356_	2	\pp.x [1]	\pp.z [1]	_028_
+NAND2X1	_357_	2	\pp.x [1]	\pp.z [1]	_029_
+NOR2X1	_358_	2	_029_	_124_	_030_
+INVX1	_359_	1	\pp.z [1]	_031_
+NOR2X1	_360_	2	\pp.x [1]	_031_	_032_
+NAND2X1	_361_	2	\pp.mr [1]	_032_	_033_
+NAND2X1	_362_	2	\pp.r1 [2]	_031_	_034_
+NAND2X1	_363_	2	_034_	_033_	_035_
+NOR2X1	_364_	2	_030_	_035_	_036_
+NOR2X1	_365_	2	_028_	_036_	\pp.r1 [2]
+INVX1	_366_	1	_028_	_037_
+INVX1	_367_	1	_029_	_038_
+NAND2X1	_368_	2	_038_	_133_	_039_
+NAND2X1	_369_	2	\pp.mr [2]	_032_	_040_
+NAND2X1	_370_	2	\pp.r1 [3]	_031_	_041_
+AND2X2	_371_	2	_040_	_041_	_042_
+NAND2X1	_372_	2	_042_	_039_	_043_
+AND2X2	_373_	2	_043_	_037_	\pp.r1 [3]
+NAND2X1	_374_	2	_038_	_006_	_044_
+AND2X2	_375_	2	_032_	\pp.mr [3]	_045_
+AND2X2	_376_	2	_031_	\pp.r1 [4]	_046_
+NOR2X1	_377_	2	_046_	_045_	_047_
+NAND2X1	_378_	2	_047_	_044_	_048_
+AND2X2	_379_	2	_048_	_037_	\pp.r1 [4]
+AND2X2	_380_	2	_031_	\pp.r1 [5]	_049_
+NOR2X1	_381_	2	_049_	_045_	_050_
+NAND2X1	_382_	2	_050_	_044_	_051_
+AND2X2	_383_	2	_051_	_037_	\pp.r1 [5]
+AND2X2	_384_	2	_031_	\pp.r1 [6]	_052_
+NOR2X1	_385_	2	_052_	_045_	_053_
+NAND2X1	_386_	2	_053_	_044_	_054_
+AND2X2	_387_	2	_054_	_037_	\pp.r1 [6]
+AND2X2	_388_	2	_031_	\pp.r1 [7]	_055_
+NOR2X1	_389_	2	_055_	_045_	_056_
+NAND2X1	_390_	2	_056_	_044_	_057_
+AND2X2	_391_	2	_057_	_037_	\pp.r1 [7]
+INVX1	_392_	1	\pp.x [2]	_058_
+NOR2X1	_393_	2	\pp.z [2]	_058_	_059_
+AND2X2	_394_	2	_059_	\pp.r2 [0]	\pp.r2 [0]
+AND2X2	_395_	2	_059_	\pp.r2 [1]	\pp.r2 [1]
+NAND2X1	_396_	2	\pp.mr [0]	\pp.z [2]	_060_
+NAND2X1	_397_	2	\pp.r2 [2]	_059_	_061_
+NAND2X1	_398_	2	_060_	_061_	\pp.r2 [2]
+NOR2X1	_399_	2	\pp.x [2]	\pp.z [2]	_062_
+NAND2X1	_400_	2	\pp.x [2]	\pp.z [2]	_063_
+NOR2X1	_401_	2	_063_	_124_	_064_
+INVX1	_402_	1	\pp.z [2]	_065_
+NOR2X1	_403_	2	\pp.x [2]	_065_	_066_
+NAND2X1	_404_	2	\pp.mr [1]	_066_	_067_
+NAND2X1	_405_	2	\pp.r2 [3]	_065_	_068_
+NAND2X1	_406_	2	_068_	_067_	_069_
+NOR2X1	_407_	2	_064_	_069_	_070_
+NOR2X1	_408_	2	_062_	_070_	\pp.r2 [3]
+INVX1	_409_	1	_062_	_071_
+INVX1	_410_	1	_063_	_072_
+NAND2X1	_411_	2	_072_	_133_	_073_
+NAND2X1	_412_	2	\pp.mr [2]	_066_	_074_
+NAND2X1	_413_	2	\pp.r2 [4]	_065_	_075_
+AND2X2	_414_	2	_074_	_075_	_076_
+NAND2X1	_415_	2	_076_	_073_	_077_
+AND2X2	_416_	2	_077_	_071_	\pp.r2 [4]
+NAND2X1	_417_	2	_072_	_006_	_078_
+AND2X2	_418_	2	_066_	\pp.mr [3]	_079_
+AND2X2	_419_	2	_065_	\pp.r2 [5]	_080_
+NOR2X1	_420_	2	_080_	_079_	_081_
+NAND2X1	_421_	2	_081_	_078_	_082_
+AND2X2	_422_	2	_082_	_071_	\pp.r2 [5]
+AND2X2	_423_	2	_065_	\pp.r2 [6]	_083_
+NOR2X1	_424_	2	_083_	_079_	_084_
+NAND2X1	_425_	2	_084_	_078_	_085_
+AND2X2	_426_	2	_085_	_071_	\pp.r2 [6]
+AND2X2	_427_	2	_065_	\pp.r2 [7]	_086_
+NOR2X1	_428_	2	_086_	_079_	_087_
+NAND2X1	_429_	2	_087_	_078_	_088_
+AND2X2	_430_	2	_088_	_071_	\pp.r2 [7]
+INVX1	_431_	1	\pp.x [3]	_089_
+NOR2X1	_432_	2	\pp.z [3]	_089_	_090_
+AND2X2	_433_	2	_090_	\pp.r3 [0]	\pp.r3 [0]
+AND2X2	_434_	2	_090_	\pp.r3 [1]	\pp.r3 [1]
+AND2X2	_435_	2	_090_	\pp.r3 [2]	\pp.r3 [2]
+NAND2X1	_436_	2	\pp.mr [0]	\pp.z [3]	_091_
+NAND2X1	_437_	2	\pp.r3 [3]	_090_	_092_
+NAND2X1	_438_	2	_091_	_092_	\pp.r3 [3]
+NOR2X1	_439_	2	\pp.x [3]	\pp.z [3]	_093_
+NAND2X1	_440_	2	\pp.x [3]	\pp.z [3]	_094_
+NOR2X1	_441_	2	_094_	_124_	_095_
+INVX1	_442_	1	\pp.z [3]	_096_
+NOR2X1	_443_	2	\pp.x [3]	_096_	_097_
+NAND2X1	_444_	2	\pp.mr [1]	_097_	_098_
+NAND2X1	_445_	2	\pp.r3 [4]	_096_	_099_
+NAND2X1	_446_	2	_099_	_098_	_100_
+NOR2X1	_447_	2	_095_	_100_	_101_
+NOR2X1	_448_	2	_093_	_101_	\pp.r3 [4]
+INVX1	_449_	1	_093_	_102_
+INVX1	_450_	1	_094_	_103_
+NAND2X1	_451_	2	_103_	_133_	_104_
+NAND2X1	_452_	2	\pp.mr [2]	_097_	_105_
+NAND2X1	_453_	2	\pp.r3 [5]	_096_	_106_
+AND2X2	_454_	2	_105_	_106_	_107_
+NAND2X1	_455_	2	_107_	_104_	_108_
+AND2X2	_456_	2	_108_	_102_	\pp.r3 [5]
+NAND2X1	_457_	2	_103_	_006_	_109_
+AND2X2	_458_	2	_097_	\pp.mr [3]	_110_
+AND2X2	_459_	2	_096_	\pp.r3 [6]	_111_
+NOR2X1	_460_	2	_111_	_110_	_112_
+NAND2X1	_461_	2	_112_	_109_	_113_
+AND2X2	_462_	2	_113_	_102_	\pp.r3 [6]
+AND2X2	_463_	2	_096_	\pp.r3 [7]	_114_
+NOR2X1	_464_	2	_114_	_110_	_115_
+NAND2X1	_465_	2	_115_	_109_	_116_
+AND2X2	_466_	2	_116_	_102_	\pp.r3 [7]
+NAND2X1	_467_	2	\tree.fa11.y 	\tree.fa11.x 	_144_
+AND2X2	_468_	2	\tree.fa11.y 	\tree.fa11.x 	_145_
+NOR2X1	_469_	2	\tree.fa11.y 	\tree.fa11.x 	_146_
+NOR2X1	_470_	2	_146_	_145_	_147_
+NAND2X1	_471_	2	\tree.fa11.c_in 	_147_	_138_
+NAND2X1	_472_	2	_144_	_138_	\tree.fa11.c_out 
+INVX1	_473_	1	\tree.fa11.c_in 	_139_
+NAND2X1	_474_	2	_139_	_147_	_140_
+OR2X2	_475_	2	\tree.fa11.y 	\tree.fa11.x 	_141_
+NAND2X1	_476_	2	_144_	_141_	_142_
+NAND2X1	_477_	2	\tree.fa11.c_in 	_142_	_143_
+NAND2X1	_478_	2	_140_	_143_	\tree.fa11.sum 
+NAND2X1	_479_	2	\tree.fa12.y 	\tree.fa12.x 	_154_
+AND2X2	_480_	2	\tree.fa12.y 	\tree.fa12.x 	_155_
+NOR2X1	_481_	2	\tree.fa12.y 	\tree.fa12.x 	_156_
+NOR2X1	_482_	2	_156_	_155_	_157_
+NAND2X1	_483_	2	\tree.fa12.c_in 	_157_	_148_
+NAND2X1	_484_	2	_154_	_148_	\tree.fa12.c_out 
+INVX1	_485_	1	\tree.fa12.c_in 	_149_
+NAND2X1	_486_	2	_149_	_157_	_150_
+OR2X2	_487_	2	\tree.fa12.y 	\tree.fa12.x 	_151_
+NAND2X1	_488_	2	_154_	_151_	_152_
+NAND2X1	_489_	2	\tree.fa12.c_in 	_152_	_153_
+NAND2X1	_490_	2	_150_	_153_	\tree.fa12.sum 
+NAND2X1	_491_	2	\tree.fa13.y 	\tree.fa13.x 	_164_
+AND2X2	_492_	2	\tree.fa13.y 	\tree.fa13.x 	_165_
+NOR2X1	_493_	2	\tree.fa13.y 	\tree.fa13.x 	_166_
+NOR2X1	_494_	2	_166_	_165_	_167_
+NAND2X1	_495_	2	\tree.fa13.c_in 	_167_	_158_
+NAND2X1	_496_	2	_164_	_158_	\tree.fa13.c_out 
+INVX1	_497_	1	\tree.fa13.c_in 	_159_
+NAND2X1	_498_	2	_159_	_167_	_160_
+OR2X2	_499_	2	\tree.fa13.y 	\tree.fa13.x 	_161_
+NAND2X1	_500_	2	_164_	_161_	_162_
+NAND2X1	_501_	2	\tree.fa13.c_in 	_162_	_163_
+NAND2X1	_502_	2	_160_	_163_	\tree.fa13.sum 
+NAND2X1	_503_	2	\tree.fa14.y 	\tree.fa14.x 	_174_
+AND2X2	_504_	2	\tree.fa14.y 	\tree.fa14.x 	_175_
+NOR2X1	_505_	2	\tree.fa14.y 	\tree.fa14.x 	_176_
+NOR2X1	_506_	2	_176_	_175_	_177_
+NAND2X1	_507_	2	\tree.fa14.c_in 	_177_	_168_
+NAND2X1	_508_	2	_174_	_168_	\tree.fa14.c_out 
+INVX1	_509_	1	\tree.fa14.c_in 	_169_
+NAND2X1	_510_	2	_169_	_177_	_170_
+OR2X2	_511_	2	\tree.fa14.y 	\tree.fa14.x 	_171_
+NAND2X1	_512_	2	_174_	_171_	_172_
+NAND2X1	_513_	2	\tree.fa14.c_in 	_172_	_173_
+NAND2X1	_514_	2	_170_	_173_	\tree.fa14.sum 
+NAND2X1	_515_	2	\tree.fa15.y 	\tree.fa15.x 	_184_
+AND2X2	_516_	2	\tree.fa15.y 	\tree.fa15.x 	_185_
+NOR2X1	_517_	2	\tree.fa15.y 	\tree.fa15.x 	_186_
+NOR2X1	_518_	2	_186_	_185_	_187_
+NAND2X1	_519_	2	\tree.fa15.c_in 	_187_	_178_
+NAND2X1	_520_	2	_184_	_178_	\tree.fa15.c_out 
+INVX1	_521_	1	\tree.fa15.c_in 	_179_
+NAND2X1	_522_	2	_179_	_187_	_180_
+OR2X2	_523_	2	\tree.fa15.y 	\tree.fa15.x 	_181_
+NAND2X1	_524_	2	_184_	_181_	_182_
+NAND2X1	_525_	2	\tree.fa15.c_in 	_182_	_183_
+NAND2X1	_526_	2	_180_	_183_	\tree.fa15.sum 
+NAND2X1	_527_	2	\tree.fa16.y 	\tree.fa16.x 	_194_
+AND2X2	_528_	2	\tree.fa16.y 	\tree.fa16.x 	_195_
+NOR2X1	_529_	2	\tree.fa16.y 	\tree.fa16.x 	_196_
+NOR2X1	_530_	2	_196_	_195_	_197_
+NAND2X1	_531_	2	\tree.fa16.c_in 	_197_	_188_
+NAND2X1	_532_	2	_194_	_188_	\tree.fa16.c_out 
+INVX1	_533_	1	\tree.fa16.c_in 	_189_
+NAND2X1	_534_	2	_189_	_197_	_190_
+OR2X2	_535_	2	\tree.fa16.y 	\tree.fa16.x 	_191_
+NAND2X1	_536_	2	_194_	_191_	_192_
+NAND2X1	_537_	2	\tree.fa16.c_in 	_192_	_193_
+NAND2X1	_538_	2	_190_	_193_	\tree.fa16.sum 
+NAND2X1	_539_	2	\tree.fa17.y 	\tree.fa17.x 	_204_
+AND2X2	_540_	2	\tree.fa17.y 	\tree.fa17.x 	_205_
+NOR2X1	_541_	2	\tree.fa17.y 	\tree.fa17.x 	_206_
+NOR2X1	_542_	2	_206_	_205_	_207_
+NAND2X1	_543_	2	\tree.fa17.c_in 	_207_	_198_
+NAND2X1	_544_	2	_204_	_198_	\tree.fa17.c_out 
+INVX1	_545_	1	\tree.fa17.c_in 	_199_
+NAND2X1	_546_	2	_199_	_207_	_200_
+OR2X2	_547_	2	\tree.fa17.y 	\tree.fa17.x 	_201_
+NAND2X1	_548_	2	_204_	_201_	_202_
+NAND2X1	_549_	2	\tree.fa17.c_in 	_202_	_203_
+NAND2X1	_550_	2	_200_	_203_	\tree.fa17.sum 
+NAND2X1	_551_	2	\tree.fa18.y 	\tree.fa18.x 	_214_
+AND2X2	_552_	2	\tree.fa18.y 	\tree.fa18.x 	_215_
+NOR2X1	_553_	2	\tree.fa18.y 	\tree.fa18.x 	_216_
+NOR2X1	_554_	2	_216_	_215_	_217_
+NAND2X1	_555_	2	\tree.fa18.c_in 	_217_	_208_
+NAND2X1	_556_	2	_214_	_208_	\tree.fa18.c_out 
+INVX1	_557_	1	\tree.fa18.c_in 	_209_
+NAND2X1	_558_	2	_209_	_217_	_210_
+OR2X2	_559_	2	\tree.fa18.y 	\tree.fa18.x 	_211_
+NAND2X1	_560_	2	_214_	_211_	_212_
+NAND2X1	_561_	2	\tree.fa18.c_in 	_212_	_213_
+NAND2X1	_562_	2	_210_	_213_	\tree.fa18.sum 
+NAND2X1	_563_	2	\tree.fa2.y 	\tree.fa2.x 	_224_
+AND2X2	_564_	2	\tree.fa2.y 	\tree.fa2.x 	_225_
+NOR2X1	_565_	2	\tree.fa2.y 	\tree.fa2.x 	_226_
+NOR2X1	_566_	2	_226_	_225_	_227_
+NAND2X1	_567_	2	\tree.fa2.c_in 	_227_	_218_
+NAND2X1	_568_	2	_224_	_218_	\tree.fa2.c_out 
+INVX1	_569_	1	\tree.fa2.c_in 	_219_
+NAND2X1	_570_	2	_219_	_227_	_220_
+OR2X2	_571_	2	\tree.fa2.y 	\tree.fa2.x 	_221_
+NAND2X1	_572_	2	_224_	_221_	_222_
+NAND2X1	_573_	2	\tree.fa2.c_in 	_222_	_223_
+NAND2X1	_574_	2	_220_	_223_	\tree.fa2.sum 
+NAND2X1	_575_	2	\tree.fa3.y 	\tree.fa3.x 	_234_
+AND2X2	_576_	2	\tree.fa3.y 	\tree.fa3.x 	_235_
+NOR2X1	_577_	2	\tree.fa3.y 	\tree.fa3.x 	_236_
+NOR2X1	_578_	2	_236_	_235_	_237_
+NAND2X1	_579_	2	\tree.fa3.c_in 	_237_	_228_
+NAND2X1	_580_	2	_234_	_228_	\tree.fa3.c_out 
+INVX1	_581_	1	\tree.fa3.c_in 	_229_
+NAND2X1	_582_	2	_229_	_237_	_230_
+OR2X2	_583_	2	\tree.fa3.y 	\tree.fa3.x 	_231_
+NAND2X1	_584_	2	_234_	_231_	_232_
+NAND2X1	_585_	2	\tree.fa3.c_in 	_232_	_233_
+NAND2X1	_586_	2	_230_	_233_	\tree.fa3.sum 
+NAND2X1	_587_	2	\tree.fa4.y 	\tree.fa4.x 	_244_
+AND2X2	_588_	2	\tree.fa4.y 	\tree.fa4.x 	_245_
+NOR2X1	_589_	2	\tree.fa4.y 	\tree.fa4.x 	_246_
+NOR2X1	_590_	2	_246_	_245_	_247_
+NAND2X1	_591_	2	\tree.fa4.c_in 	_247_	_238_
+NAND2X1	_592_	2	_244_	_238_	\tree.fa4.c_out 
+INVX1	_593_	1	\tree.fa4.c_in 	_239_
+NAND2X1	_594_	2	_239_	_247_	_240_
+OR2X2	_595_	2	\tree.fa4.y 	\tree.fa4.x 	_241_
+NAND2X1	_596_	2	_244_	_241_	_242_
+NAND2X1	_597_	2	\tree.fa4.c_in 	_242_	_243_
+NAND2X1	_598_	2	_240_	_243_	\tree.fa4.sum 
+NAND2X1	_599_	2	\tree.fa5.y 	\tree.fa5.x 	_254_
+AND2X2	_600_	2	\tree.fa5.y 	\tree.fa5.x 	_255_
+NOR2X1	_601_	2	\tree.fa5.y 	\tree.fa5.x 	_256_
+NOR2X1	_602_	2	_256_	_255_	_257_
+NAND2X1	_603_	2	\tree.fa5.c_in 	_257_	_248_
+NAND2X1	_604_	2	_254_	_248_	\tree.fa5.c_out 
+INVX1	_605_	1	\tree.fa5.c_in 	_249_
+NAND2X1	_606_	2	_249_	_257_	_250_
+OR2X2	_607_	2	\tree.fa5.y 	\tree.fa5.x 	_251_
+NAND2X1	_608_	2	_254_	_251_	_252_
+NAND2X1	_609_	2	\tree.fa5.c_in 	_252_	_253_
+NAND2X1	_610_	2	_250_	_253_	\tree.fa5.sum 
+NAND2X1	_611_	2	\tree.fa7.y 	\tree.fa7.x 	_264_
+AND2X2	_612_	2	\tree.fa7.y 	\tree.fa7.x 	_265_
+NOR2X1	_613_	2	\tree.fa7.y 	\tree.fa7.x 	_266_
+NOR2X1	_614_	2	_266_	_265_	_267_
+NAND2X1	_615_	2	\tree.fa7.c_in 	_267_	_258_
+NAND2X1	_616_	2	_264_	_258_	\tree.fa7.c_out 
+INVX1	_617_	1	\tree.fa7.c_in 	_259_
+NAND2X1	_618_	2	_259_	_267_	_260_
+OR2X2	_619_	2	\tree.fa7.y 	\tree.fa7.x 	_261_
+NAND2X1	_620_	2	_264_	_261_	_262_
+NAND2X1	_621_	2	\tree.fa7.c_in 	_262_	_263_
+NAND2X1	_622_	2	_260_	_263_	\tree.fa7.sum 
+NAND2X1	_623_	2	\tree.fa8.y 	\tree.fa8.x 	_274_
+AND2X2	_624_	2	\tree.fa8.y 	\tree.fa8.x 	_275_
+NOR2X1	_625_	2	\tree.fa8.y 	\tree.fa8.x 	_276_
+NOR2X1	_626_	2	_276_	_275_	_277_
+NAND2X1	_627_	2	\tree.fa8.c_in 	_277_	_268_
+NAND2X1	_628_	2	_274_	_268_	\tree.fa8.c_out 
+INVX1	_629_	1	\tree.fa8.c_in 	_269_
+NAND2X1	_630_	2	_269_	_277_	_270_
+OR2X2	_631_	2	\tree.fa8.y 	\tree.fa8.x 	_271_
+NAND2X1	_632_	2	_274_	_271_	_272_
+NAND2X1	_633_	2	\tree.fa8.c_in 	_272_	_273_
+NAND2X1	_634_	2	_270_	_273_	\tree.fa8.sum 
+NAND2X1	_635_	2	\tree.fa9.y 	\tree.fa9.x 	_284_
+AND2X2	_636_	2	\tree.fa9.y 	\tree.fa9.x 	_285_
+NOR2X1	_637_	2	\tree.fa9.y 	\tree.fa9.x 	_286_
+NOR2X1	_638_	2	_286_	_285_	_287_
+NAND2X1	_639_	2	\tree.fa9.c_in 	_287_	_278_
+NAND2X1	_640_	2	_284_	_278_	\tree.fa9.c_out 
+INVX1	_641_	1	\tree.fa9.c_in 	_279_
+NAND2X1	_642_	2	_279_	_287_	_280_
+OR2X2	_643_	2	\tree.fa9.y 	\tree.fa9.x 	_281_
+NAND2X1	_644_	2	_284_	_281_	_282_
+NAND2X1	_645_	2	\tree.fa9.c_in 	_282_	_283_
+NAND2X1	_646_	2	_280_	_283_	\tree.fa9.sum 
+AND2X2	_647_	2	\tree.ha1.y 	\tree.ha1.x 	\tree.ha1.c_out 
+NOR2X1	_648_	2	\tree.ha1.y 	\tree.ha1.x 	_288_
+NOR2X1	_649_	2	_288_	\tree.ha1.c_out 	\tree.ha1.sum 
+AND2X2	_650_	2	\tree.ha10.y 	\tree.ha10.x 	\tree.ha10.c_out 
+NOR2X1	_651_	2	\tree.ha10.y 	\tree.ha10.x 	_289_
+NOR2X1	_652_	2	_289_	\tree.ha10.c_out 	\tree.ha10.sum 
+AND2X2	_653_	2	\tree.ha6.y 	\tree.ha6.x 	\tree.ha6.c_out 
+NOR2X1	_654_	2	\tree.ha6.y 	\tree.ha6.x 	_290_
+NOR2X1	_655_	2	_290_	\tree.ha6.c_out 	\tree.ha6.sum 

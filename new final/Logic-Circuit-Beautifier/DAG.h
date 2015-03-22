@@ -12,7 +12,6 @@
 #include <QString>
 #include <fstream>
 #include <QVector>
-//#include <utility>
 #include <QPair>
 #include <QTextStream>
 #include <QFile>
@@ -25,36 +24,33 @@ class DAG
 {
 public:
     
-    DAG();
-    ~DAG();
+    DAG();                                                  // constructor
+    ~DAG();                                                 // destructor
     
-    //bool openFile ();
-    bool readFile(const QString &);
-    qint64 getGatesCounter();
-    qint64 find(QVector<QString>*, const QString &);
+    bool readFile(const QString &);                         // opens and reads file to create graph
+    qint64 getGatesCounter();                               // returns count of number of gates
+    qint64 find(QVector<QString>*, const QString &);        // searches for string in vector (used in many cases)
     
-    QVector <gate> gates;
-    QVector <QString> outputs;
-    QVector <QString> inputs;
-    QVector <QString> wires;
+    QVector <gate> gates;                                   // vector of gates (please see gate.h)
+    QVector <QString> outputs;                              // list of outputs from each gate instance
+    QVector <QString> inputs;                               // list of inputs from each gate instance
+    QVector <QString> wires;                                // list of outputs from each gate instance
     
-    QVector<QString> In;
-    QVector<QString> Out;
-    QVector<QString> InOut;
-    QVector<QString> Wires;
-    QVector<QPair<QString, QString> > Assign;
+    QVector<QString> In;                                    // list of inputs from begining of file
+    QVector<QString> Out;                                   // list of outputs from begining of file
+    QVector<QString> InOut;                                 // list of inout ports from begining of file
+    QVector<QString> Wires;                                 // list of wires from begining of file
+    QVector<QPair<QString, QString> > Assign;               // list of assigns from begining of file (2 params)
 
-    QVector<QVector<qint64> > adjMatrix;
+    QVector<QVector<qint64> > adjMatrix;                    // resulting adjacency matrix
     
 private:
 
-    //QFile file;
-
-    qint64 inCount;
-    qint64 outCount;
-    qint64 inoutCount;
-    qint64 wiresCount;
-    qint64 assignCount;
+    qint64 inCount;                                         // inputs count
+    qint64 outCount;                                        // outputs count
+    qint64 inoutCount;                                      // inout count
+    qint64 wiresCount;                                      // wire count
+    qint64 assignCount;                                     // assign count
 };
 
 #endif

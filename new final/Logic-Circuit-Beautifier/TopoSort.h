@@ -22,30 +22,30 @@ class TopoSort
 {
 public:
     
-    TopoSort(DAG*);
-    ~TopoSort();
+    TopoSort(DAG*);                                 // constructor of DAG
+    ~TopoSort();                                    // destructor
     
-    void KahnSort();
+    void KahnSort();                                // performs Kahn sort
     
-    QVector <QString> sortedGates;
-    QQueue <qint64> noEdgesIndex;
+    QVector <QString> sortedGates;                  // resulting list of sorted gates
+    QQueue <qint64> noEdgesIndex;                   // index of gates that are not connected to other gates
 
-    void sortGates (DAG*);
+    void sortGates (DAG*);                          // fills sortedGates
     
 private:
     
-    QVector< QVector < qint64> > AdjMatrix;
-    QQueue <gate> noIncomingEdges;
+    //QVector< QVector < qint64> > AdjMatrix;         // adjacency matrix
+    QQueue <gate> noIncomingEdges;                  // list of gates that are not connected to other gates
     //QQueue <qint64> noEdgesIndex;
-    QVector<qint64> connectedGates;
+    QVector<qint64> connectedGates;                 // list of gates connected to a certain gate
+
+    DAG* dagPtr;                                    // pointer to DAG which will be sorted
+    qint64 gatesCount;                              // number of gates
+    qint64 levelCount;                              // counter for levels
     
-    DAG* dagPtr;
-    qint64 gatesCount;
-    qint64 levelCount;
-    
-    bool hasIncomingEdges(const qint64&);
-    void getConnectedGates(const qint64&);
-    qint16 find(QString&, QVector<gate>&);
+    bool hasIncomingEdges(const qint64&);           // returns true if gate is connected to another gate
+    void getConnectedGates(const qint64&);          // retrieves list of gates connected to the gate indicated by qint64
+    qint16 find(QString&, QVector<gate>&);          // finds string in vector of strings (used for different uses)
 
     
 };

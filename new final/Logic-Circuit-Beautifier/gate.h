@@ -16,12 +16,13 @@ using namespace std;
 
 class gate
 {
+    // gate class that saves all gate attributes
 public:
-    QString name;
-    qint64 num_inputs;
-    QVector <QString> inputs;
-    QString output;
-    qint64 level;
+    QString name;                                       // name of gate
+    qint64 num_inputs;                                  // number of inputs
+    QVector <QString> inputs;                           // list of inputs names
+    QString output;                                     // output name
+    qint64 level;                                       // level number
 };
 
 #endif

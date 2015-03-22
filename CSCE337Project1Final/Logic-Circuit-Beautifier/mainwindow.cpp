@@ -32,8 +32,7 @@ void MainWindow::on_pushButton_2_clicked()
 {
     // BROWSE
 
-    // clear all vectors to start each file processing from scratch
-
+   // clear
     netlist.adjMatrix.clear();
     netlist.gates.clear();
     netlist.In.clear();
@@ -43,6 +42,7 @@ void MainWindow::on_pushButton_2_clicked()
     netlist.outputs.clear();
     netlist.Wires.clear();
     netlist.wires.clear();
+    netlist.Assign.clear();
 
     sortedDAG.adjMatrix.clear();
     sortedDAG.gates.clear();
@@ -53,8 +53,8 @@ void MainWindow::on_pushButton_2_clicked()
     sortedDAG.outputs.clear();
     sortedDAG.Wires.clear();
     sortedDAG.wires.clear();
+    sortedDAG.Assign.clear();
 
-   // opens file explorer that allows user to select files that are .txt (parsed perl files)
    VerilogFileName = QFileDialog :: getOpenFileName(
                 this,
                 tr("Choose File"),                              // Dialog Name
@@ -68,46 +68,49 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     // RUN
-    ui->listWidget->clear();                                // clears display boxes
+    ui->listWidget->clear();
     ui->textBrowser_3->clear();
 
     gate * g, * g1;
 
     unsigned int numberGates;
 
-    if (netlist.readFile(VerilogFileName))                  // opens and reads files
-    {                                                       // if successful
-        numberGates = netlist.getGatesCounter();            // get counter of gates
+    //if (netlist->openFile(argv[1]))
+    if (netlist.readFile(VerilogFileName))
+    {
+        //netlist.readFile();
+        numberGates = netlist.getGatesCounter();
 
-        netlist.adjMatrix.resize(numberGates);              // prepares adjacency matrix
+        netlist.adjMatrix.resize(numberGates);
         for (qint16 i = 0; i < numberGates; i++)
             netlist.adjMatrix[i].resize(numberGates);
 
-        for (qint16 i = 0; i < numberGates; i++)            // for each gate
+        for (qint16 i = 0; i < numberGates; i++)
         {
-            g = &(netlist.gates[i]);                        // gets gate
+            g = &(netlist.gates[i]);
 
-            for (qint16 j = 0; j < g->inputs.size(); j++)   // for each input of gate
+            for (qint16 j = 0; j < g->inputs.size(); j++)          // for each input
             {
                 // check if the each input of the gate is an output of another gate
                 int outin = netlist.find(&(netlist.outputs),g->inputs[j]);
 
                 for (qint16 k = 0; k < numberGates; k++)   // for each output
                 {
-                    g1 = &(netlist.gates[k]);               // get gate
+                    g1 = &(netlist.gates[k]);
                     if (outin!= -1)
-                        if (g1->output == netlist.outputs[outin])   // if gate g and g1 are connected
-                            netlist.adjMatrix[i][k] = 1;    // creates link in adjMatrix to indicate connection
+                        if (g1->output == netlist.outputs[outin])
+                            netlist.adjMatrix[i][k] = 1;
                 }
             }
+
+            // check if gate output is input to other gates
         }
 
         /* TOPO SORT */
-        TopoSort top(&netlist);         // instantiates topoSort of the DAG
-        top.KahnSort();                 // applies Kahn Sort
-        top.sortGates(&sortedDAG);      // gets sorted gates
+        TopoSort top(&netlist);
+        top.KahnSort();
+        top.sortGates(&sortedDAG);
 
-        // display levels in levels list window
         ui->listWidget->addItem( "Level 0 ");
         for (qint16 i = 1; i <= sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
         {
@@ -115,26 +118,29 @@ void MainWindow::on_pushButton_clicked()
         }
         ui->listWidget->addItem("Level " + QString::number(sortedDAG.gates[netlist.getGatesCounter()-1].level + 1) );
 
-        // display assign statements
+
+
         QString message = "";
-        for (qint16 i = 1; i <= sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
+        for (qint16 i = 0; i < sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
         {
             message += netlist.Assign[i].first + ",\t " + netlist.Assign[i].second + "\n";
         }
+
         ui->textBrowser_2->setText(message);
+
     }
+
+
 }
 
 
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
-    // upon selection of level, displays the gates in the level
-
     QString message = "";
 
-    qint16 index = ui->listWidget->currentRow();                    // gets index of selected row
+    qint16 index = ui->listWidget->currentRow();
 
-    if (index == 0)                                                 // if index == 0, display inputs
+    if (index == 0)
     {
         message += "--Inputs-- \n";
 
@@ -143,7 +149,7 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
             message += netlist.In[i] + "\n";
         }
     }
-    else                                                            // if index == last level, display outputs
+    else
         if (index == sortedDAG.gates[netlist.getGatesCounter()-1].level + 1)
         {
             message += "--Outputs-- \n";
@@ -153,7 +159,7 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
                 message += netlist.Out[i] + "\n";
             }
         }
-        else                                                    // else display gates per level
+        else
             for (qint16 i =0; i < netlist.getGatesCounter(); i++)
             {
                 if (sortedDAG.gates[i].level == index)
