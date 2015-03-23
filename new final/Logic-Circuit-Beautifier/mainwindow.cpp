@@ -43,6 +43,7 @@ void MainWindow::on_pushButton_2_clicked()
     netlist.outputs.clear();
     netlist.Wires.clear();
     netlist.wires.clear();
+    netlist.Assign.clear();
 
     sortedDAG.adjMatrix.clear();
     sortedDAG.gates.clear();
@@ -118,13 +119,16 @@ void MainWindow::on_pushButton_clicked()
         }
         ui->listWidget->addItem("Level " + QString::number(sortedDAG.gates[netlist.getGatesCounter()-1].level + 1) );
 
+        /*
         // display assign statements
         QString message = "";
-        for (qint16 i = 1; i <= sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
+        for (qint16 i = 0; i < sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
         {
             message += netlist.Assign[i].first + ",\t " + netlist.Assign[i].second + "\n";
         }
-        ui->textBrowser_2->setText(message);
+        */
+
+       //ui->textBrowser_2->setText( netlist.Assign[0].first + ",\t " + netlist.Assign[0].second + "\n");
     }
 }
 

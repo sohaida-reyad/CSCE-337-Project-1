@@ -118,10 +118,8 @@ void MainWindow::on_pushButton_clicked()
         }
         ui->listWidget->addItem("Level " + QString::number(sortedDAG.gates[netlist.getGatesCounter()-1].level + 1) );
 
-
-
         QString message = "";
-        for (qint16 i = 0; i < sortedDAG.gates[netlist.getGatesCounter()-1].level ; i++)
+        for (qint16 i = 0; i < netlist.Assign.size() ; i++)
         {
             message += netlist.Assign[i].first + ",\t " + netlist.Assign[i].second + "\n";
         }
